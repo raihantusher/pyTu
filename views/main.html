@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  <style type="text/css" media="screen">
+    #editor { 
+        position: relative;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+          height: 400px;
+      
+       
+    }
+
+    .prevLineStepGutter {
+  background-image: url("lightgreenarrow.png")!important;
+  color:red;
+}
+
+.curPrevOverlapLineStepGutter {
+  background-image: url("redgreenarrow.png");
+}
+
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+       <div id="editor"></div>
+    </div>
+
+    <div class="col-md-6">
+      <button class="btn btn-primary run">Run</button>
+
+      <table>
+
+        <tbody class="tableRow">
+        
+        
+          
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+<div>
+    
+<script src="/static/src/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.session.setMode("ace/mode/python");
+    editor.resize(true);
+
+</script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" ></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"  ></script>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+<script type="text/javascript">
+
+     
+$(".run").click(function(){
+
+   
+  $.post("/run", {code: editor.getValue()}, function(result){
+    console.log(result);
+  });
+
+
+
+  });
+
+    </script>
+  </body>
+</html>
