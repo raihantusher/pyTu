@@ -1,20 +1,14 @@
 from bottle import route, run, template ,Bottle,static_file,error,request,response
 
+from output_trace import Trace
 
 
-# simplified version of generate_json_trace.py
-import pg_logger, json
-
-def json_finalizer(input_code, output_trace):
-  ret = dict(code=input_code, trace=output_trace)
-  json_output = json.dumps(ret, indent=2)
-  print(json_output)
 
 
 
 @route('/')
 def index():
-    return {'name':"dfff"}
+    return template("main")
 
 @route('/static/<filepath:path>')
 def server_static(filepath):
@@ -24,11 +18,12 @@ def server_static(filepath):
 
 @route('/run',method="POST")
 def run_py():
-     response.set_header('Origin', '*')
+     response.content_type = 'application/json'
      code=request.forms.get("code")
-     obj=pg_logger.exec_script_str(code, False,False, json_finalizer)
-     
-     
+     #obj=pg_logger.exec_script_str(code, False,False, json_finalizer)
+     trace=Trace(code)
+     obj=trace.output_dict()
+     print obj
      return obj
 
 
