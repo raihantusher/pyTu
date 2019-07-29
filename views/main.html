@@ -39,17 +39,39 @@
   <div class="row">
     <div class="col-md-6">
        <div id="editor"></div>
+       <button class="btn btn-primary mt-5 run ">Run</button>
+
+       <button class="btn btn-danger mt-5 backward"><< backward</button> <button class="btn btn-danger mt-5 forward">Forward >></button>
     </div>
 
     <div class="col-md-6">
-      <button class="btn btn-primary run">Run</button>
+     
 
       <table>
+        <thead>
+          <tr>
+            <th>line</th>
+            <th>event</th>
+            <th>stdout</th>
+            <th>func_name</th>
+            <th>globals</th>
+            <th>ordered_globals</th>
+            <th>stack_to_render</th>
+            <th>heap</th>
+           
+          </tr>
+        </thead>
 
         <tbody class="tableRow">
-        
-        
-          
+        <tr>
+         <td>1</td>
+         <td>2</td>
+        </tr>
+
+        <tr>
+            <td>1</td>
+            <td>2</td>
+           </tr>
         </tbody>
 
       </table>
@@ -75,17 +97,58 @@
 
 <script type="text/javascript">
 
-     
+var last_line=0;
+var trace=[];
+
+//current line indicator
+var i=0;
+
 $(".run").click(function(){
 
+//last line is number of trace or length of trace
+
    
-  $.post("/run", {code: editor.getValue()}, function(result){
-    console.log(result);
+  $.post("http://localhost:90/run", {code: editor.getValue()}, function(result){
+    //console.log(result);
+
+   
+    //total trace
+    last_line=result.trace.length;
+
+    //trace array
+    trace=result.trace;
+   
+    for(var i=0;i<trace.length;i++)
+    {
+
+       console.log(trace[i]);
+    }
+    
   });
 
-
+ 
 
   });
+   
+
+   $(".forward").click(function(){
+    if(i==(last_line-1)){
+      $(".forward").hide();
+      return;
+    }
+
+     if(last_line!=0){
+       i=i+1;
+       console.log("line:"+i+"output:");
+       console.log(trace[i].ordered_globals);
+       console.log(trace[i].stdout);
+     }
+
+     
+
+   });
+
+
 
     </script>
   </body>
