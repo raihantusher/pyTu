@@ -47,11 +47,11 @@
     <div class="col-md-6">
      
 
-      <table>
+      <table class="table">
         <thead>
           <tr>
-            <th>line</th>
-            <th>event</th>
+            <th scope="col">line</th>
+            <th scope="col">event</th>
             <th>stdout</th>
             <th>func_name</th>
             <th>globals</th>
@@ -63,15 +63,8 @@
         </thead>
 
         <tbody class="tableRow">
-        <tr>
-         <td>1</td>
-         <td>2</td>
-        </tr>
-
-        <tr>
-            <td>1</td>
-            <td>2</td>
-           </tr>
+        
+           
         </tbody>
 
       </table>
@@ -122,6 +115,7 @@ $(".run").click(function(){
     {
 
        console.log(trace[i]);
+       $(".tableRow").append("<tr><td>"+trace[i].stdout+"</td></tr>");
     }
     
   });
