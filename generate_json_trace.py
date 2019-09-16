@@ -61,13 +61,13 @@ if options.usercode:
   if options.allmodules:
     allow_all_modules = True
 
-  print(pg_logger.exec_script_str_local(options.usercode,
+  '''print(pg_logger.exec_script_str_local(options.usercode,
                                         options.raw_input_lst_json,
                                         options.cumulative,
                                         options.heapPrimitives,
                                         json_finalizer,
                                         probe_exprs=probe_exprs,
-                                        allow_all_modules=allow_all_modules))
+                                        allow_all_modules=allow_all_modules))'''
 else:
   fin = sys.stdin if args[0] == "-" else open(args[0])
   if options.js_varname:

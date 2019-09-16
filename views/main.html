@@ -50,15 +50,8 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col">line</th>
-            <th scope="col">event</th>
-            <th>stdout</th>
-            <th>func_name</th>
-            <th>globals</th>
-            <th>ordered_globals</th>
-            <th>stack_to_render</th>
-            <th>heap</th>
-           
+           <th>Global Frame</th>
+           <th>Object</th>
           </tr>
         </thead>
 
@@ -110,11 +103,11 @@ $(".run").click(function(){
 
     //trace array
     trace=result.trace;
-   
+    console.log(trace)
     for(var i=0;i<trace.length;i++)
     {
 
-       console.log(trace[i]);
+       //console.log(trace[i]);
        $(".tableRow").append("<tr><td>"+trace[i].stdout+"</td></tr>");
     }
     
