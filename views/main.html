@@ -81,6 +81,7 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 
+
 <script type="text/javascript">
 
 var last_line=0;
@@ -95,20 +96,29 @@ $(".run").click(function(){
 
    
   $.post("http://localhost:90/run", {code: editor.getValue()}, function(result){
-    //console.log(result);
-
+    console.log(result);
+    
+    editor.setValue(JSON.stringify(result));
    
     //total trace
     last_line=result.trace.length;
 
     //trace array
     trace=result.trace;
-    console.log(trace)
+     //console.log(trace)
+
+    // check ordered_globals[] 
+     for(j=0;j<trace.length;j++){
+       
+     }
+     
     for(var i=0;i<trace.length;i++)
     {
 
+       //check length of ordered_globals[]
+        
        //console.log(trace[i]);
-       $(".tableRow").append("<tr><td>"+trace[i].stdout+"</td></tr>");
+       //$(".tableRow").append("<tr><td>"+trace[i].stdout+"</td></tr>");
     }
     
   });
