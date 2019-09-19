@@ -23,7 +23,7 @@ def run_py():
      #obj=pg_logger.exec_script_str(code, False,False, json_finalizer)
      trace=Trace(code)
      obj=trace.output_dict()
-     print obj
+     print (obj)
      return obj
 
 
