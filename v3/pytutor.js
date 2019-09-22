@@ -4532,18 +4532,4 @@ AnnotationBubble.prototype.redrawBubble = function() {
 }
 
 
-// NB: copy-and-paste from isOutputLineVisible with some minor tweaks
-function isOutputLineVisibleForBubbles(lineDivID) {
-  var pcod = $('#pyCodeOutputDiv');
-
-  var lineNoTd = $('#' + lineDivID);
-  var LO = lineNoTd.offset().top;
-
-  var PO = pcod.offset().top;
-  var ST = pcod.scrollTop();
-  var H = pcod.height();
-
-  // add a few pixels of fudge factor on the bottom end due to bottom scrollbar
-  return (PO <= LO) && (LO < (PO + H - 25));
-}
 
